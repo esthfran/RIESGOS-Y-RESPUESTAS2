@@ -1,0 +1,66 @@
+﻿@model RIESGOS_Y_RESPUESTAS.Models.Respuestum
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container mt-5">
+    <h1 class="mt-5 text-center">Detalles</h1>
+    <div class="card shadow-lg p-4">
+        <div class="card-body">
+            <h4 class="card-title mb-4">
+                <i class="fas fa-info-circle me-2" aria-hidden="true"></i> Informacion de registro
+            </h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2" id="nombre">
+                    <i class="fas fa-user me-2" aria-hidden="true"></i>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </dt>
+                <dd class="col-sm-10" aria-labelledby="nombre">
+                    @Html.DisplayFor(model => model.Nombre)
+                </dd>
+
+                <dt class="col-sm-2" id="descripcion">
+                    <i class="fas fa-info-circle me-2" aria-hidden="true"></i>
+                    @Html.DisplayNameFor(model => model.Descripción)
+                </dt>
+                <dd class="col-sm-10" aria-labelledby="descripcion">
+                    @Html.DisplayFor(model => model.Descripción)
+                </dd>
+
+                <dt class="col-sm-2" id="porcentajeMitigacion">
+                    <i class="fas fa-percent me-2" aria-hidden="true"></i>
+                    @Html.DisplayNameFor(model => model.PorcentajeMtigación)
+                </dt>
+                <dd class="col-sm-10" aria-labelledby="porcentajeMitigacion">
+                    @Html.DisplayFor(model => model.PorcentajeMtigación)
+                </dd>
+
+                <dt class="col-sm-2" id="valorMejorasMonetario">
+                    <i class="fas fa-dollar-sign me-2" aria-hidden="true"></i>
+                    @Html.DisplayNameFor(model => model.ValorMejorasMonetario)
+                </dt>
+                <dd class="col-sm-10" aria-labelledby="valorMejorasMonetario">
+                    @Html.DisplayFor(model => model.ValorMejorasMonetario)
+                </dd>
+
+                <dt class="col-sm-2" id="tiempoRespuesta">
+                    <i class="fas fa-clock me-2" aria-hidden="true"></i>
+                    @Html.DisplayNameFor(model => model.TiempoRespuesta)
+                </dt>
+                <dd class="col-sm-10" aria-labelledby="tiempoRespuesta">
+                    @Html.DisplayFor(model => model.TiempoRespuesta)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="mt-4 text-center">
+        <a asp-action="Edit" asp-route-id="@Model?.Idrespuesta" class="btn btn-primary" aria-label="Editar registro">
+            <i class="fas fa-edit me-2" aria-hidden="true"></i> Editar
+        </a>
+        <a asp-action="Index" class="btn btn-secondary" aria-label="Volver a la lista">
+            <i class="fas fa-arrow-left me-2" aria-hidden="true"></i> Volver a la lista
+        </a>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+﻿@model RIESGOS_Y_RESPUESTAS.Models.Dañosformulario
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center">Formulario registro de daños - perdidas</h1>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-body p-5">
+                    <h2 class="text-lg-center">Editar Datos de Daños - Pérdidas</h2>
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <input type="hidden" asp-for="Iddañosimportantes" />
+
+                        <div class="form-group mb-3">
+                            <label asp-for="AreasAfectadas" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+                                <input asp-for="AreasAfectadas" class="form-control" placeholder="Ingrese las áreas afectadas"/>
+                            </div>
+                            <span asp-validation-for="AreasAfectadas" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="ValorDaños" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
+                                <input asp-for="ValorDaños" class="form-control" placeholder="Ingrese el valor de los daños" />
+                            </div>
+                            <span asp-validation-for="ValorDaños" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Respuesta" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-chat-left-dots"></i></span>
+                                <input asp-for="Respuesta" class="form-control" placeholder="Ingrese la respuesta" />
+                            </div>
+                            <span asp-validation-for="Respuesta" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Activos" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-wrench"></i></span>
+                                <select asp-for="Activos" class="form-control" asp-items="ViewBag.Activos">
+                                    <option value="">Seleccione un activo</option>
+                                </select>
+                            </div>
+                            <span asp-validation-for="Activos" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="EstadoDaño" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-exclamation-triangle-fill"></i></span>
+                                <input asp-for="EstadoDaño" class="form-control" placeholder="Ingrese el estado del daño" />
+                            </div>
+                            <span asp-validation-for="EstadoDaño" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group text-center justify-content-center mt-3">
+                            <button type="submit" class="btn btn-success btn-lg"
+                                    onclick="return confirm('Por favor, revise los datos ingresados. Si son correctos, haga clic en Aceptar para guardarlos. Si necesita hacer cambios, haga clic en Cancelar.');">
+                                <i class="bi bi-save"></i> Guardar
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary btn-lg"
+                               onclick="return confirm('¿Está seguro de que desea volver a la lista?');">
+                                <i class="bi bi-arrow-left"></i> Volver a la Lista
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="back-to-home-container">
+    <a asp-controller="Home" asp-action="Index" class="btn-custom">
+        <i class="fas fa-home align-content-center"></i> Volver a Inicio
+    </a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

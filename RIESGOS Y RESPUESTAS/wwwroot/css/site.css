@@ -1,0 +1,287 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    transition: background-color 0.9s ease, color 0.10s ease; /* Transición suave para el fondo y el color del texto */
+
+}
+
+.no-transition {
+    transition: none !important;
+}
+
+    body.night-mode {
+        background-color: #121212; /* Fondo oscuro para el body */
+        color: #ffffff; /* Texto blanco */
+    }
+
+        body.night-mode .navbar {
+            background-color: #1f1f1f; /* Fondo oscuro para la barra de navegación */
+        }
+
+        body.night-mode .btn {
+            color: #ffffff; /* Texto blanco para botones */
+        }
+
+        body.night-mode .card {
+            background-color: #3a3a3a; /* Fondo plomo oscuro para las tarjetas */
+            color: #ffffff; /* Texto blanco en las tarjetas */
+            border: 1px solid #444444; /* Borde gris oscuro */
+        }
+
+        body.night-mode .input-group {
+            background-color: #42484D; /* Fondo para el grupo de entrada */
+            border-radius: 5px; /* Bordes redondeados opcionales */
+        }
+
+        body.night-mode .form-control {
+            background-color: #403c3c; /* Fondo para el input */
+            color: #ffffff; /* Texto blanco en el input */
+        }
+
+            body.night-mode .form-control::placeholder {
+                color: #aaaaaa; /* Color del texto del placeholder */
+            }
+
+/* Color del botón en modo día */
+.night-mode-button {
+    background-color: darkslategrey; /* Color original del botón */
+    color: white; /* Color del texto */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+    /* Color del botón en modo noche */
+    .night-mode-button.night-active {
+        background-color: darkslategrey; /* Color del botón en modo noche */
+        color: white; /* Color del texto */
+    }
+/* Estilo del botón de modo noche */
+.night-mode-button {
+    background-color: darkslategrey; /* Color original del botón */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 30px; /* Aumentar a 30px para bordes más redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cursor de puntero al pasar el ratón */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+    /* Estilo del botón en modo noche */
+    .night-mode-button.night-active {
+        background-color: #121212 ; /* Color del botón en modo noche */
+        color: white; /* Color del texto */
+    }
+
+    /* Efecto al pasar el ratón sobre el botón en modo día */
+    .night-mode-button:hover {
+        background-color: #121212; /* Color amarillo al pasar el ratón */
+        transform: translateY(-2px); /* Elevación al pasar el ratón */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    }
+
+    /* Efecto al pasar el ratón sobre el botón en modo noche */
+    .night-mode-button.night-active:hover {
+        background-color: #d9ae07; /* Color más claro al pasar el ratón en modo noche */
+    }
+
+.table {
+    background-color: #ffffff; /* Color de fondo blanco para la tabla */
+    color: #333; /* Color de texto oscuro para mejor legibilidad */
+}
+
+    .table th {
+        background-color: #f8f9fa; /* Color de fondo claro para los encabezados */
+        color: #212529; /* Color de texto oscuro para los encabezados */
+    }
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2; /* Color de fondo claro para filas impares */
+}
+
+.table-striped tbody tr:hover {
+    background-color: #e2e6ea; /* Color de fondo al pasar el ratón */
+}
+
+.btn {
+    transition: background-color 0.9s; /* Transición suave para botones */
+}
+
+    .btn:hover {
+        background-color: #0056b3; /* Color de fondo para botones al pasar el ratón (puedes ajustarlo según tu esquema de color) */
+        color: #ffffff; /* Color de texto claro para los botones al pasar el ratón */
+    }
+
+/* Estilo por defecto del footer */
+#footer {
+    background-color: #f8f9fa; /* Fondo claro por defecto */
+    color: #212529; /* Color de texto claro por defecto */
+}
+
+/* Estilo del footer en modo noche */
+.night-mode #footer {
+    background-color: #1a1a1a; /* Fondo oscuro */
+    color: #ffffff; /* Color de texto blanco */
+}
+
+    .night-mode #footer a {
+        color: #a0c4ff; /* Color de enlace en modo noche */
+    }
+
+/* Modo Noche para el cuerpo de la página */
+body.dark-mode {
+    background-color: #121212; /* Fondo oscuro profundo para reducir la fatiga visual */
+    color: #e0e0e0; /* Texto gris claro para contraste con el fondo oscuro */
+}
+
+    /* Modo Noche para tablas */
+    body.dark-mode .table {
+        background-color: #1e1e1e; /* Fondo gris oscuro para las tablas */
+        color: #e0e0e0; /* Texto gris claro en las celdas para legibilidad */
+    }
+
+        /* Bordes de las celdas de la tabla en modo oscuro */
+        body.dark-mode .table th, body.dark-mode .table td {
+            border-color: #333; /* Bordes de las celdas en gris oscuro para separar suavemente las celdas */
+        }
+
+    /* Fondo más oscuro para encabezados de tabla en modo oscuro */
+    body.dark-mode .table-dark {
+        background-color: #333; /* Encabezados de tabla con fondo más oscuro en modo noche */
+    }
+
+    /* Modo Noche para los botones */
+    body.dark-mode .btn {
+        color: #fff; /* Texto blanco en los botones para buen contraste con el fondo oscuro */
+    }
+
+
+
+/*body.night-mode .text-muted.fst-italic {
+    color: #b0b0b0;*/ /* Color de texto atenuado en modo noche */
+    /*font-style: italic;*/ /* Asegúrate de que el texto sea cursivo */
+/*}*/
+
+h1.text-danger {
+    margin-top: 10px; /* Ajusta el valor según sea necesario */
+}
+
+/*div.container-mt4 {
+    margin-top: 10px;*/ /* Ajusta el valor según sea necesario */
+    /*margin-bottom: 10px;*/ /* Separación de 10 píxeles */
+/*}*/
+
+.card {
+    padding: 10px; /* Ajusta según tus necesidades */
+}
+
+    .card h3, .card h4 {
+        margin-top: 10px; /* Espaciado superior */
+        margin-bottom: 20px; /* Espaciado inferior */
+    }
+
+.back-to-home-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back-to-home-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-custom {
+    display: inline-block;
+    padding: 15px; /* Ajusta el padding para que sea más cuadrado */
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff; /* Color del texto */
+    background-color: #007bff; /* Azul moderno */
+    border-radius: 10px; /* Bordes redondeados */
+    text-decoration: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2); /* Sombra suave */
+}
+
+    .btn-custom:hover {
+        background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+        box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4); /* Sombra más intensa */
+        color: #fff; /* Mantener el color del texto en blanco */
+    }
+
+    .btn-custom i {
+        margin-right: 8px;
+    }
+
+:root {
+    --text-color-day: #6c757d; /* Color de texto en modo día */
+    --text-color-night: #adb5bd; /* Color de texto en modo noche */
+    --background-color-day: #ffffff; /* Fondo en modo día */
+    --background-color-night: #343a40; /* Fondo en modo noche */
+}
+
+body {
+    background-color: var(--background-color-day);
+    color: var(--text-color-day);
+}
+
+.noche {
+    background-color: var(--background-color-night);
+    color: var(--text-color-night);
+}
+
+/* Estilo para el texto específico */
+span.form-text.text-muted {
+    color: var(--text-color-day); /* Por defecto, en modo día */
+}
+
+/* Cambiar el color del texto en modo noche */
+.noche span.form-text.text-muted {
+    color: var(--text-color-night);
+}
+
+.alert {
+    transition: opacity 0.5s ease-in-out; /* Transición suave para el desvanecimiento */
+    opacity: 1; /* Opacidad inicial */
+}
+
+    .alert.fade-out {
+        opacity: 0; /* Opacidad al final de la transición */
+    }
+.slide-in {
+    animation: slideIn 0.5s ease-in-out; /* Animación para el deslizamiento hacia arriba */
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px); /* Comienza 20px hacia abajo */
+        opacity: 0; /* Comienza completamente transparente */
+    }
+
+    to {
+        transform: translateY(0); /* Finaliza en la posición original */
+        opacity: 1; /* Finaliza completamente visible */
+    }
+}
+
+.fade-out {
+    transition: opacity 0.5s ease-in-out; /* Transición suave para el desvanecimiento */
+    opacity: 0; /* Opacidad al final de la transición */
+}

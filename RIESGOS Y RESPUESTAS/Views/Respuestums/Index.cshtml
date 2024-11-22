@@ -1,0 +1,65 @@
+﻿@model IEnumerable<RIESGOS_Y_RESPUESTAS.Models.Respuestum>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-4 align-content-center ">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div id="successAlert" class="alert alert-success text-center">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+    </div>
+</div>
+
+<h1 class="text-center my-4">respuestas registradas</h1>
+
+<div class="d-flex justify-content-between mb-4">
+    <h3>registros</h3>
+    <a class="btn btn-primary" asp-action="Create">
+        <i class="fas fa-plus"></i> Crear Nuevo
+    </a>
+</div>
+
+<div class="container mt-4">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered text-lg-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                    <th>@Html.DisplayNameFor(model => model.Descripción)</th>
+                    <th>@Html.DisplayNameFor(model => model.PorcentajeMtigación)</th>
+                    <th>@Html.DisplayNameFor(model => model.ValorMejorasMonetario)</th>
+                    <th>@Html.DisplayNameFor(model => model.TiempoRespuesta)</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Descripción)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PorcentajeMtigación)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ValorMejorasMonetario)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TiempoRespuesta)</td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@item.Idrespuesta" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <a asp-action="Details" asp-route-id="@item.Idrespuesta" class="btn btn-info btn-sm">
+                                <i class="fas fa-info-circle"></i> Detalles
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.Idrespuesta" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i> Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

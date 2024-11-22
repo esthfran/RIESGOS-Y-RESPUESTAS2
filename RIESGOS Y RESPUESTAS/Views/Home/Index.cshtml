@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center container mt-5">
+    <h1 class="display-4">gestor de riesgos - daños - respuesta</h1>
+</div>
+<hr />
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="mb-4">Seleccione un formulario</h1>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+        <!-- Card 1 -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg h-100 border-0">
+                <div class="card-body text-center">
+                    <div class="icon mb-3">
+                        <i class="fas fa-exclamation-triangle fa-3x text-warning"></i>
+                    </div>
+                    <h5 class="card-title">Formulario registro de riesgos</h5>
+                    <p class="card-text">Completa el siguiente formulario para ingresar registro de riesgos.</p>
+                    <a href="@Url.Action("Create", "Riesgoes")" class="btn btn-warning btn-block rounded-pill">Ir al Formulario de riesgos</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg h-100 border-0">
+                <div class="card-body text-center">
+                    <div class="icon mb-3">
+                        <i class="fas fa-warehouse fa-3x text-primary"></i>
+                    </div>
+                    <h5 class="card-title">Formulario registro de activos</h5>
+                    <p class="card-text">Completa el formulario para el ingreso de activos.</p>
+                    <a href="@Url.Action("Create", "Activoes1")" class="btn btn-primary btn-block rounded-pill">Ir al Formulario de Activos</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg h-100 border-0">
+                <div class="card-body text-center">
+                    <div class="icon mb-3">
+                        <i class="fas fa-bomb fa-3x text-danger"></i>
+                    </div>
+                    <h5 class="card-title">Formulario registro de daños</h5>
+                    <p class="card-text">Completa el siguiente formulario para ingresar registro de daños.</p>
+                    <a href="@Url.Action("Create", "DañosFormulario")" class="btn btn-danger btn-block rounded-pill">Ir al Formulario de Daños</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg h-100 border-0">
+                <div class="card-body text-center">
+                    <div class="icon mb-3">
+                        <i class="fas fa-hand-holding-medical fa-3x text-success"></i>
+                    </div>
+                    <h5 class="card-title">Formulario registro de respuestas</h5>
+                    <p class="card-text">Completa el siguiente formulario para registrar respuestas ante daños o riesgos.</p>
+                    <a href="@Url.Action("Create", "Respuestums")" class="btn btn-success btn-block rounded-pill">Ir al Formulario de Respuestas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="text-center">
+    <h1 class="mb-4">Gráficos</h1>
+</div>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <!-- Tarjeta para el gráfico de daños -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-body text-center">
+                    <h5 class="card-title"><i class="fas fa-chart-bar"></i> Gráfico de Daños</h5>
+                    <p class="card-text">Visualiza los datos de daños registrados.</p>
+                    <a href="@Url.Action("DamagesChart", "Graficos")" class="btn btn-danger">
+                        <i class="fas fa-eye"></i> Ver Gráfico
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta para el gráfico de riesgos -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-body text-center">
+                    <h5 class="card-title"><i class="fas fa-chart-line"></i> Gráfico de Riesgos</h5>
+                    <p class="card-text">Analiza los diferentes riesgos asociados.</p>
+                    <a href="@Url.Action("RisksChart", "Graficos")" class="btn btn-warning">
+                        <i class="fas fa-eye"></i> Ver Gráfico
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta para otro gráfico -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-body text-center">
+                    <h5 class="card-title"><i class="fas fa-chart-pie"></i> Gráfico Adicional</h5>
+                    <p class="card-text">Explora otros datos relevantes.</p>
+                    <a href="@Url.Action("AdditionalChart", "Graficos")" class="btn btn-secondary">
+                        <i class="fas fa-eye"></i> Ver Gráfico
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,66 @@
+﻿@model RIESGOS_Y_RESPUESTAS.Models.Respuestum
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div>
+    <!-- Título principal de la página -->
+    <h1 class="text-danger text-center"><i class="fas fa-trash-alt"></i> Eliminar Registro - respuestas</h1>
+</div>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="card shadow-lg rounded-4 border-0">
+            <!-- Pregunta de confirmación para el usuario -->
+            <h3 class="mb-4">¿Seguro que desea eliminar los datos seleccionados?</h3>
+            <div>
+                <h4 class="text-secondary">Detalles</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-3 fw-bold text-secondary">
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Nombre)
+                    </dd>
+                    <dt class="col-sm-3 fw-bold text-secondary">
+                        @Html.DisplayNameFor(model => model.Descripción)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Descripción)
+                    </dd>
+                    <dt class="col-sm-3 fw-bold text-secondary">
+                        @Html.DisplayNameFor(model => model.PorcentajeMtigación)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.PorcentajeMtigación)
+                    </dd>
+                    <dt class="col-sm-3 fw-bold text-secondary">
+                        @Html.DisplayNameFor(model => model.ValorMejorasMonetario)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.ValorMejorasMonetario)
+                    </dd>
+                    <dt class="col-sm-3 fw-bold text-secondary">
+                        @Html.DisplayNameFor(model => model.TiempoRespuesta)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.TiempoRespuesta)
+                    </dd>
+                </dl>
+
+                <form method="post" asp-action="Delete" class="mt-4">
+                    <input type="hidden" asp-for="Idrespuesta" />
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-danger btn-lg">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary btn-lg ms-2"><i class="fas fa-arrow-left"></i> Volver a la Lista</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

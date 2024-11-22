@@ -1,0 +1,81 @@
+﻿@model RIESGOS_Y_RESPUESTAS.Models.Activo
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger mt-3">
+        <strong>Error:</strong> @TempData["ErrorMessage"]
+        @if (TempData["ErrorActivoId"] != null)
+        {
+            <div class="mt-2">
+                <a asp-action="Details" asp-route-id="@TempData["ErrorActivoId"]" class="btn btn-warning">
+                    <i class="fas fa-eye"></i> Ver Detalles
+                </a>
+            </div>
+        }
+    </div>
+}
+
+<div>
+    <h1 class="text-danger text-center"><i class="fas fa-trash-alt"></i> Eliminar Activo</h1>
+</div>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="card shadow-lg rounded-4 border-0">
+            <h3 class="mb-4">¿Seguro que desea eliminar los datos seleccionados?</h3>
+            <div>
+                <h4>Detalles del Activo</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Implementos)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Implementos)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.TiposDeActivosIdtipos)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.TiposDeActivosIdtipos)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CosteActivos)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CosteActivos)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Cantidad)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Cantidad)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.IdmunicipalidadNavigation.NombreDepartamento)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.IdmunicipalidadNavigation.NombreDepartamento)
+                    </dd>
+                </dl>
+
+                <form method="post" asp-action="Delete" asp-route-id="@Model.Idactivos">
+                    <input type="hidden" asp-for="Idactivos" />
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('¿Seguro que quieres eliminar esto? Esta acción no se puede deshacer.');">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary btn-lg ms-2">
+                            <i class="fas fa-arrow-left"></i> Volver a la Lista
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

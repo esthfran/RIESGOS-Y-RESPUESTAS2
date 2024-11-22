@@ -1,0 +1,64 @@
+﻿@model IEnumerable<RIESGOS_Y_RESPUESTAS.Models.Dañosformulario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-lg-4 align-content-center ">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div id="successAlert" class="alert alert-success text-center">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+    </div>
+</div>
+
+<h1 class="text-center my-4">Listado de Daños y Pérdidas</h1>
+
+<div class="d-flex justify-content-between mb-4">
+    <h3>Daños Importantes</h3>
+    <a class="btn btn-primary" asp-action="Create">
+        <i class="fas fa-plus"></i> Crear Nuevo
+    </a>
+</div>
+
+<table class="table table-striped table-hover table-bordered text-lg-center">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(Model => Model.Iddañosimportantes)</th>
+            <th>@Html.DisplayNameFor(model => model.AreasAfectadas)</th>
+            <th>@Html.DisplayNameFor(model => model.ValorDaños)</th>
+            <th>@Html.DisplayNameFor(model => model.Respuesta)</th>
+            <th>@Html.DisplayNameFor(model => model.EstadoDaño)</th>
+            <th>@Html.DisplayNameFor(model => model.ActivosNavigation)</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@Html.DisplayFor(ModelIten => item.Iddañosimportantes)</th>
+                <td>@Html.DisplayFor(modelItem => item.AreasAfectadas)</td>
+                <td>@Html.DisplayFor(modelItem => item.ValorDaños)</td>
+                <td>@Html.DisplayFor(modelItem => item.Respuesta)</td>
+                <td>@Html.DisplayFor(modelItem => item.EstadoDaño)</td>
+                <td>@Html.DisplayFor(modelItem => item.ActivosNavigation.Implementos)</td>
+                <td class="text-center">
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.Iddañosimportantes">
+                        <i class="fas fa-edit"></i> Editar
+                    </a>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.Iddañosimportantes">
+                        <i class="fas fa-info-circle"></i> Detalles
+                    </a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Iddañosimportantes">
+                        <i class="fas fa-trash"></i> Eliminar
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

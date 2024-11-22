@@ -1,0 +1,106 @@
+﻿@model RIESGOS_Y_RESPUESTAS.Models.Activo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="container my-5">
+    <h1 class="my-4 text-center">Detalles del Activo</h1>
+    <div class="card shadow-lg p-4">
+        <div class="card-body">
+            <h4 class="card-title mb-4">
+                <i class="fas fa-info-circle me-2"></i> Información del Activo
+            </h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3 fw-bold">
+                    <i class="fas fa-tools me-2"></i> @Html.DisplayNameFor(model => model.Implementos)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Implementos)
+                </dd>
+
+                <dt class="col-sm-3 fw-bold">
+                    <i class="fas fa-box-open me-2"></i> @Html.DisplayNameFor(model => model.TiposDeActivosIdtipos)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.TiposDeActivosIdtipos)
+                </dd>
+
+                <dt class="col-sm-3 fw-bold">
+                    <i class="fas fa-dollar-sign me-2"></i> @Html.DisplayNameFor(model => model.CosteActivos)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.CosteActivos)
+                </dd>
+
+                <dt class="col-sm-3 fw-bold">
+                    <i class="fas fa-sort-numeric-up me-2"></i> @Html.DisplayNameFor(model => model.Cantidad)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Cantidad)
+                </dd>
+
+                <dt class="col-sm-3 fw-bold">
+                    <i class="fas fa-map-marker-alt me-2"></i> @Html.DisplayNameFor(model => model.IdmunicipalidadNavigation.NombreDepartamento)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.IdmunicipalidadNavigation.NombreDepartamento)
+                </dd>
+
+                <dd class="col-sm-9 night-mode">
+                    <p class="card-text text-secondary fst-italic">Reportado desde el formulario de daños:</p>
+                    @if (Model.Dañosformularios.Any())
+                    {
+                        <div class="row">
+                            @foreach (var dañosformulario in Model.Dañosformularios)
+                            {
+                                <div class="col-md-6 mb-3">
+                                    <div class="card border-info shadow-sm">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Áreas Afectadas: @dañosformulario.AreasAfectadas</h5>
+                                            <p class="card-text">Codigo De Formulario: @dañosformulario.Iddañosimportantes</p>
+                                            <!-- Enlace para ver los detalles del formulario de daños -->
+                                            <a asp-action="Details" asp-controller="Dañosformulario" asp-route-id="@dañosformulario.Iddañosimportantes" class="btn btn-primary btn-sm">
+                                                <!-- Icono para representar la acción de "Ver Detalles" (Font Awesome) -->
+                                                <i class="fas fa-info-circle me-1"></i> Ver Detalles
+                                            </a>
+                                            
+                                            <!-- Enlace para editar el formulario de daños -->
+                                            <a asp-action="Edit" asp-controller="Dañosformulario" asp-route-id="@dañosformulario.Iddañosimportantes" class="btn btn-primary btn-sm">
+                                                <!-- Icono para representar la acción de "Editar" (Font Awesome) -->
+                                                <i class="fas fa-edit me-1"></i> Editar
+                                            </a>
+
+                                            <!-- Enlace para eliminar el formulario de daños -->
+                                            <a asp-action="Delete" asp-controller="Dañosformulario" asp-route-id="@dañosformulario.Iddañosimportantes" class="btn btn-danger btn-sm"
+                                               onclick="return confirm('¿Estás seguro de que deseas eliminar esta área afectada?');">
+                                                <!-- Icono para representar la acción de "Eliminar" (Font Awesome) -->
+                                                <i class="fas fa-trash-alt me-1"></i> Eliminar
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-success fst-italic">No hay daños reportados.</p>
+                    }
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a asp-action="Edit" asp-route-id="@Model?.Idactivos" class="btn btn-primary">
+            <i class="fas fa-edit me-2"></i> Editar
+        </a>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-2"></i> Volver a la lista
+        </a>
+    </div>
+</div>
+

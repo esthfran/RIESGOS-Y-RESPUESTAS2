@@ -1,0 +1,88 @@
+﻿@model RIESGOS_Y_RESPUESTAS.Models.Activo
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center">activos</h1>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <!-- Tarjeta moderna con sombra -->
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4">Editar Registro de Riesgos</h2>
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Idactivos" />
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Implementos" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-tools"></i></span> <!-- Icono para "Implementos" -->
+                                <input asp-for="Implementos" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Implementos" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="TiposDeActivosIdtipos" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span> <!-- Icono para "Tipos De Activos" -->
+                                <input asp-for="TiposDeActivosIdtipos" class="form-control" />
+                            </div>
+                            <span asp-validation-for="TiposDeActivosIdtipos" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="CosteActivos" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span> <!-- Icono para "Coste Activos" -->
+                                <input asp-for="CosteActivos" class="form-control" />
+                            </div>
+                            <span asp-validation-for="CosteActivos" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Cantidad" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-sort-numeric-up"></i></span> <!-- Icono para "Cantidad" -->
+                                <input asp-for="Cantidad" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Cantidad" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Idmunicipalidad" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-building"></i></span> <!-- Icono para "Municipalidad" -->
+                                <select asp-for="Idmunicipalidad" class="form-control" asp-items="ViewBag.Idmunicipalidad"></select>
+                            </div>
+                            <span asp-validation-for="Idmunicipalidad" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid">
+                            
+                        </div>
+                        <div class="form-group text-center justify-content-center mt-3">
+                            <input type="submit" value="Guardar" class="btn btn-success btn-lg" onclick="return confirm('Por favor, revise los datos ingresados. Si son correctos, haga clic en Aceptar para guardarlos. Si necesita hacer cambios, haga clic en Cancelar .');" />
+                            <a asp-action="Index" class="btn btn-secondary btn-lg"
+                               onclick="return confirm('¿Estás seguro de que deseas volver a la lista?');">Volver a la Lista</a>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="back-to-home-container">
+        <a asp-controller="Home" asp-action="Index" class="btn-custom">
+            <i class="fas fa-home align-content-center"></i>Volver a Inicio
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

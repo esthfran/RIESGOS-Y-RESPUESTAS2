@@ -1,0 +1,64 @@
+﻿@model RIESGOS_Y_RESPUESTAS.Models.Dañosformulario
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class ="container mt-5">
+    <h1 class="mt-5 text-center">Detalles</h1>
+    <div class="card shadow-lg p-4">
+        <div class ="card-body">
+            <h4 class="card-title mb-4">
+                <i class="fas fa-info-circle me-2"></i> Informacion de registro
+            </h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.AreasAfectadas)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.AreasAfectadas)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ValorDaños)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ValorDaños)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Respuesta)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Respuesta)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.EstadoDaño)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.EstadoDaño)
+                </dd>
+                <!-- Título -->
+                <dt class="col-sm-2 text-secondary">
+                    <i class="bi bi-box-seam"></i>
+                    @Html.DisplayNameFor(model => model.ActivosNavigation)
+                </dt>
+                <!-- Contenido con detalles de activos -->
+                <dd class="col-sm-10">
+                    <span class="fw-bold text-primary">Número identificador:</span>
+                    <span class="text">@Html.DisplayFor(model => model.ActivosNavigation.Idactivos)</span>
+                    <span class="fw-bold text-primary ms-3">Tipo:</span>
+                    <span class="text">@Html.DisplayFor(model => model.ActivosNavigation.Implementos)</span>
+                </dd>
+            </dl>
+
+        </div>
+    </div>
+    <div class="mt-4 text-center">
+        <a asp-action="Edit" asp-route-id="@Model?.Iddañosimportantes" class="btn btn-primary">
+            <i class="fas fa-edit me-2"></i> Editar
+        </a>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-2"></i> Volver a la lista
+        </a>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+﻿@model RIESGOS_Y_RESPUESTAS.Models.Dañosformulario
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center mt-4">formulario Registro de daños o perdidas</h1>
+<hr />
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <!-- Tarjeta moderna con sombra -->
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4">Crear Nuevo Registro de Daños</h2>
+
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <!-- Campo Áreas Afectadas -->
+                        <div class="form-group mb-4 position-relative">
+                            <label asp-for="AreasAfectadas" class="form-label">Áreas Afectadas</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-geo-alt-fill"></i></span>
+                                <input asp-for="AreasAfectadas" class="form-control rounded-end" placeholder="Especifique las áreas afectadas" />
+                            </div>
+                            <span asp-validation-for="AreasAfectadas" class="text-danger"></span>
+                        </div>
+
+                        <!-- Campo Valor de Daños -->
+                        <div class="form-group mb-4 position-relative">
+                            <label asp-for="ValorDaños" class="form-label">Valor de los Daños</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-currency-dollar"></i></span>
+                                <input asp-for="ValorDaños" class="form-control rounded-end" placeholder="Ingrese el valor estimado de los daños" />
+                            </div>
+                            <span asp-validation-for="ValorDaños" class="text-danger"></span>
+                        </div>
+
+                        <!-- Campo Respuesta -->
+                        <div class="form-group mb-4 position-relative">
+                            <label asp-for="Respuesta" class="form-label">Respuesta</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-chat-left-dots"></i></span>
+                                <input asp-for="Respuesta" class="form-control rounded-end" placeholder="Describa la respuesta aplicada" />
+                            </div>
+                            <span asp-validation-for="Respuesta" class="text-danger"></span>
+                        </div>
+
+                        <!-- Campo Selección de Activo Correspondiente -->
+                        <div class="mb-3">
+                            <div class="form-group mb-4 position-relative">
+                                <label asp-for="Activos" class="form-label">Activo Correspondiente</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light"><i class="bi bi-wrench"></i></span>
+                                    <select asp-for="Activos" class="form-select" asp-items="ViewBag.Activos">
+                                        <option value="" disabled selected>Seleccione un activo</option>
+                                    </select>
+                                </div>
+                                <span asp-validation-for="Activos" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Campo Estado del Daño -->
+                        <div class="form-group mb-4 position-relative">
+                            <label asp-for="EstadoDaño" class="form-label">Estado del Daño</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-exclamation-triangle-fill"></i></span>
+                                <input asp-for="EstadoDaño" class="form-control rounded-end" placeholder="Especifique el estado del daño" />
+                            </div>
+                            <span asp-validation-for="EstadoDaño" class="text-danger"></span>
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="text-center mt-4">
+
+                            <button type="submit" value="Crear registro" class="btn btn-success btn-lg me-2" onclick="return confirm('Por favor, revise los datos ingresados. Si son correctos, haga clic en Aceptar para guardarlos. Si necesita hacer cambios, haga clic en Cancelar.');">
+                                <i class="fas fa-check-circle me-1"></i> Crear Registro
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary btn-lg"><i class="bi bi-arrow-left"></i> Volver a la Lista</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="back-to-home-container">
+    <a asp-controller="Home" asp-action="Index" class="btn-custom">
+        <i class="fas fa-home"></i> volver a inicio
+    </a>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

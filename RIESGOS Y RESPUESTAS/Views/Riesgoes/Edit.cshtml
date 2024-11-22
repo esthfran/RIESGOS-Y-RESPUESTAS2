@@ -1,0 +1,183 @@
+﻿@model RIESGOS_Y_RESPUESTAS.Models.Riesgo
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<h1 class="text-center mt-4">Formulario Registro de Riesgos</h1>
+<div>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <!-- Tarjeta moderna con sombra -->
+                <div class="card shadow-lg rounded-4 border-0">
+                    <div class="card-body p-5">
+                    <h2 class="text-center mb-4">Editar Registro de Riesgos</h2>
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                            <div class="row">
+                                
+                                <div class="col-md-6">
+                                    <input type="hidden" asp-for="Idreportes" />
+                                    <div class="form-group mb-md-4">
+                                        <label asp-for="Nombre" class="form-label"></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
+                                            <input asp-for="Nombre" class="form-control rounded-end" />
+                                        </div>
+                                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group mb-md-4">
+                                        <label asp-for="Detalles" class="form-label">Detalles</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light"><i class="fas fa-info-circle text-muted"></i></span>
+                                            <textarea asp-for="Detalles" class="form-control" rows="3" placeholder="Actualiza los detalles del riesgo"></textarea>
+                                        </div>
+                                        <span asp-validation-for="Detalles" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group mb-md-4">
+                                        <label asp-for="NivelAmenaza" class="form-label">
+                                            <i class="bi bi-exclamation-triangle ms-2"></i>
+                                            Nivel de Amenaza
+                                        </label>
+                                        <div class="d-flex flex-column">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <span class="me-2"></span>
+                                                <div class="form-check form-check-inline">
+                                                    <input asp-for="NivelAmenaza" class="form-check-input" type="radio" name="NivelAmenaza" id="nivel1" value="1">
+                                                    <label class="form-check-label" for="nivel1">Muy Bajo</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <span class="me-2"></span>
+                                                <div class="form-check form-check-inline">
+                                                    <input asp-for="NivelAmenaza" class="form-check-input" type="radio" name="NivelAmenaza" id="nivel2" value="2">
+                                                    <label class="form-check-label" for="nivel2">Bajo</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <span class="me-2"></span>
+                                                <div class="form-check form-check-inline">
+                                                    <input asp-for="NivelAmenaza" class="form-check-input" type="radio" name="NivelAmenaza" id="nivel3" value="3">
+                                                    <label class="form-check-label" for="nivel3">Medio</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <span class="me-2"></span>
+                                                <div class="form-check form-check-inline">
+                                                    <input asp-for="NivelAmenaza" class="form-check-input" type="radio" name="NivelAmenaza" id="nivel4" value="4">
+                                                    <label class="form-check-label" for="nivel4">Alto</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <span class="me-2"></span>
+                                                <div class="form-check form-check-inline">
+                                                    <input asp-for="NivelAmenaza" class="form-check-input" type="radio" name="NivelAmenaza" id="nivel5" value="5">
+                                                    <label class="form-check-label" for="nivel5">Muy Alto</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span asp-validation-for="NivelAmenaza" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group mb-4 position-relative">
+                                        <label asp-for="AreaMunicipalidad" class="form-label">Área de municipalidad afectada</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light"><i class="bi bi-geo-alt"></i></span>
+                                            <select asp-for="AreaMunicipalidad" class="form-control" asp-items="ViewBag.AreaMunicipalidad">
+                                                <option value="" disabled>Seleccione un departamento</option>
+                                            </select>
+                                        </div>
+                                        <span asp-validation-for="AreaMunicipalidad" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4 position-relative">
+                                        <label asp-for="Daños" class="form-label"></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light"><i class="bi bi-heartbreak"></i></span>
+                                            <input asp-for="Daños" class="form-control rounded-end" />
+                                        </div>
+                                        <span asp-validation-for="Daños" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group mb-4 position-relative">
+                                        <label asp-for="EstadoRiesgo" class="form-label">Estado del Riesgo</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light"><i class="fas fa-exclamation-circle text-muted"></i></span>
+                                            <select asp-for="EstadoRiesgo" class="form-control rounded-end">
+                                                <option value="" disabled selected>Seleccione el estado actual del riesgo.</option>
+                                                <option value="1">1 - Nuevo</option>
+                                                <option value="2">2 - Activo</option>
+                                                <option value="3">3 - pendiente de evaluacion</option>
+                                                <option value="4">4 - en proceso de solucion</option>
+                                                <option value="5">5 - Mitigado</option>
+                                                <option value="6">6 - riesgoso</option>
+                                                <option value="7">7 - peligroso</option>
+                                            </select>
+                                        </div>
+                                        <span asp-validation-for="EstadoRiesgo" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group mb-4 position-relative">
+                                        <label asp-for="TipoRiesgo" class="form-label"></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light"><i class="bi bi-bug"></i></span>
+                                            <select asp-for="TipoRiesgo" asp-items="ViewBag.TipoRiesgoOptions" id="tipoRiesgo" class="form-control rounded-end" onchange="mostrarSubOpciones()">
+                                                <option value="" disabled selected>Seleccione un tipo de riesgo</option>
+                                            </select>
+                                        </div>
+                                        <span asp-validation-for="TipoRiesgo" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group mb-4 position-relative">
+                                        <label asp-for="Impacto" class="form-label"></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light"><i class="bi bi-graph-up"></i></span>
+                                            <select asp-for="Impacto" class="form-control rounded-end">
+                                                <option value="0">Despreciable (0) - Irrelevante a efectos prácticos</option>
+                                                <option value="1">Bajo (1) - Daño menor</option>
+                                                <option value="2">Bajo (2) - Daño menor</option>
+                                                <option value="3">Medio (3) - Daño importante</option>
+                                                <option value="4">Medio (4) - Daño importante</option>
+                                                <option value="5">Medio (5) - Daño importante</option>
+                                                <option value="6">Alto (6) - Daño grave</option>
+                                                <option value="7">Alto (7) - Daño grave</option>
+                                                <option value="8">Alto (8) - Daño grave</option>
+                                                <option value="9">Muy alto (9) - Daño muy grave</option>
+                                                <option value="10">Extremo (10) - Daño extremadamente grave</option>
+                                            </select>
+                                        </div>
+                                        <span asp-validation-for="Impacto" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group text-center justify-content-center mt-3">
+                                <input type="submit" value="Guardar" class="btn btn-success btn-lg" onclick="return confirm('Por favor, revise los datos ingresados. Si son correctos, haga clic en Aceptar para guardarlos. Si necesita hacer cambios, haga clic en Cancelar .');" />
+                                <a asp-action="Index" class="btn btn-secondary btn-lg"
+                                   onclick="return confirm('¿Estás seguro de que deseas volver a la lista?');">Volver a la Lista</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="back-to-home-container">
+    <a asp-controller="Home" asp-action="Index" class="btn-custom">
+        <i class="fas fa-home align-content-center"></i> Volver a Inicio
+    </a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

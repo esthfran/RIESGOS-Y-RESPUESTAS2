@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RIESGOS_Y_RESPUESTAS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" asp-append-version="true" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/css/styles.css" rel="stylesheet" asp-append-version="true" />
+    <!-- DataTables CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!------------>
+</head>
+
+<body class="sb-nav-fixed">
+    <!-- Navegación superior de la aplicación -->
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Logo y nombre de la aplicación, enlazando a la acción Home -->
+        <a class="navbar-brand ps-3" asp-area="" asp-controller="Home" asp-action="">Gestor de Riesgos</a>
+
+        <!-- Botón para alternar el menú lateral -->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4" id="sidebarToggle" href="#!">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Barra de búsqueda visible en dispositivos medianos y superiores -->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <!-- Campo de entrada de texto para la búsqueda -->
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+
+                <!-- Botón de búsqueda -->
+                <button class="btn btn-primary" id="btnNavbarSearch" type="button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+
+        <!-- Menú de usuario con opciones de configuración y cierre de sesión -->
+        <ul class="navbar-nav ms-auto me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user fa-fw"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">Configuraciones</a></li>
+                    <li><a class="dropdown-item" href="#!">Registro de Actividad</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="@Url.Action("salir", "AccesoController1")">Cerrar Sesión</a></li>
+                </ul>
+            </li>
+            <li>
+                <!-- Botón para cambiar el modo -->
+                <button id="night-mode-button" class="night-mode-button">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Contenedor del menú lateral -->
+    <div class="sb-sidenav" id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <!-- Navegación lateral con colapsabilidad -->
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <!-- Enlace a la página de inicio -->
+                        <a class="nav-link" asp-area="" asp-controller="" asp-action="Index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                            Inicio
+                        </a>
+                        <!-- Enlace a la página de privacidad -->
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user-shield"></i></div>
+                            Privacidad
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Formularios</div>
+
+                        <!-- Enlace colapsable para usuarios (solo visible para administradores) -->
+                        @{
+                            var isAdmin = User.IsInRole("administrador");  // Verifica si el usuario tiene el rol de administrador
+                        }
+
+                        @if (isAdmin)
+                        {
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                Usuarios
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseUsuarios" aria-labelledby="headingUsuarios" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <!-- Enlaces para la gestión de usuarios -->
+                                    <a class="nav-link" href="@Url.Action("Index", "Usuario")">
+                                        <i class="fas fa-user-cog me-2"></i> Gestión de Usuarios
+                                    </a>
+                                    <a class="nav-link" href="@Url.Action("Create", "Usuario")">
+                                        <i class="fas fa-user-plus me-2"></i> Crear Usuario
+                                    </a>
+                                </nav>
+                            </div>
+                        }
+
+                        <!-- Enlace colapsable para formularios -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseFormularios" aria-expanded="false" aria-controls="collapseFormularios">
+                            <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
+                            Formularios
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseFormularios" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <!-- Enlaces a formularios específicos -->
+                                <a class="nav-link" href="@Url.Action("Create", "DañosFormulario")">
+                                    <i class="fas fa-exclamation-triangle me-2"></i> Daños - Pérdida
+                                </a>
+                                <a class="nav-link" href="@Url.Action("Create", "Riesgoes")">
+                                    <i class="fas fa-exclamation-circle me-2"></i> Riesgos
+                                </a>
+                                <a class="nav-link" href="@Url.Action("Create", "Respuestums")">
+                                    <i class="fas fa-bell me-2"></i> Respuestas Inminente
+                                </a>
+                            </nav>
+                        </div>
+
+                        <div class="sb-sidenav-menu-heading">Registros</div>
+
+                        <!-- Enlace colapsable para registros -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRegistros" aria-expanded="false" aria-controls="collapseRegistros">
+                            <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
+                            Registros
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseRegistros" aria-labelledby="headingFour" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <!-- Enlaces a registros específicos -->
+                                <a class="nav-link" href="@Url.Action("Index", "DañosFormulario")">
+                                    <i class="fas fa-list-alt me-2"></i> Registro de Daños
+                                </a>
+                                <a class="nav-link" href="@Url.Action("Index", "Riesgoes")">
+                                    <i class="fas fa-list-alt me-2"></i> Registro de Riesgos
+                                </a>
+                                <a class="nav-link" href="@Url.Action("Index", "Respuestums")">
+                                    <i class="fas fa-list-alt me-2"></i> Registro de Respuestas
+                                </a>
+                            </nav>
+                        </div>
+
+                        <div class="sb-sidenav-menu-heading">graficos</div>
+
+                        <!-- Enlace colapsable para gráficos -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseGraficos" aria-expanded="false" aria-controls="collapseGraficos">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+                            Gráficos
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseGraficos" aria-labelledby="headingGraficos" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <!-- Enlaces a gráficos específicos -->
+                                <a class="nav-link" href="@Url.Action("Index", "GraficoDaños")">
+                                    <i class="fas fa-chart-pie me-2"></i> Gráfico de Daños
+                                </a>
+                                <a class="nav-link" href="@Url.Action("Index", "GraficoRiesgos")">
+                                    <i class="fas fa-chart-bar me-2"></i> Gráfico de Riesgos
+                                </a>
+                                <a class="nav-link" href="@Url.Action("Index", "GraficoRespuestas")">
+                                    <i class="fas fa-chart-area me-2"></i> Gráfico de Respuestas
+                                </a>
+                            </nav>
+                        </div>
+
+                        <div class="sb-sidenav-menu-heading">activos</div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseActivos" aria-expanded="false" aria-controls="collapseActivos">
+                            <div class="sb-nav-link-icon"><i class="bi bi-motherboard"></i></div>
+                            Activos
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseActivos" aria-labelledby="headingActivos" data-bs-parent="#sidenavAccordion">
+                            <nav>
+                                <!-- Enlace a registro de activo -->
+                                <a class="nav-link" asp-area="" asp-controller="Activoes1" asp-action="Create">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-list-alt me-2"></i></div>
+                                    registro de activos
+                                </a>
+                                <!-- Enlace a tablas de activos -->
+                                <a class="nav-link" asp-area="" asp-controller="Activoes1" asp-action="Index">
+                                    <div class="sb-nav-link-icon"><i class="bi bi-file-spreadsheet-fill"></i></div>
+                                    listado de registros
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pie de menú lateral que muestra información del usuario -->
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    Start Bootstrap
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small"><img src="~/assets/img/Escudo-celeste-izquierda.png" alt="Gestor de Riesgos" style="height: 65px;" /></div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Contenido principal de la aplicación -->
+        <div id="layoutSidenav_content">
+            <main class="container">
+                <main role="main" class="pb-3">
+                    <!-- Aquí se renderiza el contenido de la vista actual -->
+                    @RenderBody()
+                    <hr />
+
+                    <!-- Pie de página -->
+                    <footer class="py-4 mt-auto">
+                        <div class="container-fluid px-4">
+                            <div class="d-flex align-items-center justify-content-between small">
+                                <div class="text-muted"></div>
+                                <div>
+                                    &copy; 2024 - homunculus aberration Incorporated Studios - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </main>
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- jQuery (from CDN) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS (from CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <!-- Custom scripts -->
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/scripts.js"></script>
+    <script src="~/assets/demo/chart-area-demo.js"></script>
+    <script src="~/assets/demo/chart-bar-demo.js"></script>
+    <script src="~/js/datatables-simple-demo.js"></script>
+    <script src="~/js/noche.js" asp-append-version="true"></script>
+    <script src="~/js/subopcion.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

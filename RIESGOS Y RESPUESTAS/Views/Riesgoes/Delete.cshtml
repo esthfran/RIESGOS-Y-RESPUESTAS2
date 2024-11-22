@@ -1,0 +1,89 @@
+﻿@model RIESGOS_Y_RESPUESTAS.Models.Riesgo
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<div>
+    <!-- Título principal de la página -->
+    <h1 class="text-danger text-center"><i class="fas fa-trash-alt"></i> Eliminar Registro - respuestas</h1>
+</div>
+
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="card shadow-lg rounded-4 border-0">
+            <!-- Pregunta de confirmación para el usuario -->
+            <h3>¿Seguro que desea eliminar los datos seleccionados?</h3>
+            <div>
+                <h4>detalles</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Nombre)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.NivelAmenaza)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.NivelAmenaza)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Detalles)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Detalles)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.AreaMunicipalidad)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.AreaMunicipalidad)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Daños)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Daños)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.EstadoRiesgo)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.EstadoRiesgo)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.TipoRiesgo)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.TipoRiesgo)
+                    </dd>
+                    
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Impacto)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Impacto)
+                    </dd>
+                </dl>
+                <form method="post" asp-action="Delete" class="mt-4">
+                    <input type="hidden" asp-for="Idreportes" />
+                    <div class="text-center">
+                        <!-- Botón para enviar la solicitud de eliminación -->
+                        <button type="submit" class="btn btn-danger btn-lg">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                        <!-- Enlace para regresar a la lista de registros -->
+                        <a asp-action="Index" class="btn btn-secondary btn-lg ms-2">
+                            <i class="fas fa-arrow-left"></i> Volver a la Lista
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
